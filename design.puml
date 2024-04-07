@@ -1,0 +1,66 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface Plot {
+    + plot (x : float[])
+}
+
+abstract class PlotDecorator{
+    # {abstract} plot (x : float[], y: float[])
+}
+
+class PlotBasic {
+    + plot(x : float[], y : float[])
+}
+
+class PlotTitle {
+    + title
+    + plot(x : float[], y: float[])
+}
+
+class PlotSize {
+    + cm_horizontal : float
+    + cm_vertical : float
+    + plot(x : float[], y : float[])
+}
+
+class PlotLegend {
+    + plot(x : float[], y : float[])
+}
+
+class PlotLabels {
+    +label_x : string
+    +label_y : string
+    + plot(x : float[], y : float[])
+}
+
+class PlotGrid {
+    + plot(x : float[], y : float[])
+}
+
+class PlotMean {
+    + plot(x : float[], y : float[])
+}
+
+class PlotGlobalExtrema {
+    + plot(x : float[], y : float[])
+}
+
+class PlotLocalExtrema {
+    + plot(x : float[], y : float[])
+}
+
+PlotDecorator ..up|> Plot
+PlotBasic ..up|> Plot
+Plot "1" <-down-o PlotDecorator : NextPlot
+PlotTitle --up|> PlotDecorator
+PlotSize --up|> PlotDecorator
+PlotLegend --up|> PlotDecorator
+PlotLabels --up|> PlotDecorator
+PlotGrid --up|> PlotDecorator
+PlotMean --up|> PlotDecorator
+PlotGlobalExtrema --up|> PlotDecorator
+PlotLocalExtrema --up|> PlotDecorator
+
+
+@enduml
